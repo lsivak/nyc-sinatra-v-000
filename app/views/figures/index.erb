@@ -1,8 +1,5 @@
 <label>Figure Name:</label>
 <% @figures.each do |figure| %>
-<li>  <a href="/figures/<%= figure.id %>"> <%= figure.name %> </a></li>
+<a href="/figures/<%= figure.id %>"> <%= figure.name %> </a>
 
-<% @figure.titles.each do |title| %>
-<p><%= title.name %> </p>
-<% end %>
 <% end %>
