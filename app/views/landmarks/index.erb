@@ -1,0 +1,5 @@
+<label>Landmark Name:</label>
+<% @Landmarks.each do |landmark| %>
+<li>  <a href="/landmarks/<%= landmark.id %>"> <%= landmark.name %> </a></li>
+
+<% end %>
