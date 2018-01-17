@@ -26,16 +26,12 @@ class LandmarksController < ApplicationController
 
   post '/landmarks' do
     @landmark = Landmark.create(:name => params["landmark"]["name"], :year_completed => params["landmark"]["year_completed"])
-      redirect to "/landmarks/#{@landmark.id}"
+    redirect to "/landmarks/#{@landmark.id}"
   end
-  #edits landmark
+
   post '/landmarks/:id' do
     @landmark = Landmark.find(params[:id])
-    # @landmark.update(params[:landmark])
-    # if !params[:landmark][:name].empty?
-      @landmark.update(params[:landmark])
-    # end
-
+    @landmark.update(params[:landmark])
     @landmark.save
     redirect to "/landmarks/#{@landmark.id}"
   end
