@@ -24,17 +24,18 @@ class LandmarksController < ApplicationController
     erb :"landmarks/edit"
   end
 
-  post '/landmarks' do
-    @landmark = Landmark.create(:name => params["landmark"]["name"], :year_completed => params["landmark"]["year_completed"])
-      redirect to "/landmarks/#{@landmark.id}"
-  end
-  #edits landmark
+
+
   post '/landmarks/:id' do
     @landmark = Landmark.find(params[:id])
     @landmark.name = params["landmark"]["name"]
     @landmark.year_completed = params["landmark"]["year_completed"]
     @landmark.save
     redirect to "/landmarks/#{@landmark.id}"
+  end
+  post '/landmarks' do
+    @landmark = Landmark.create(:name => params["landmark"]["name"], :year_completed => params["landmark"]["year_completed"])
+      redirect to "/landmarks/#{@landmark.id}"
   end
 
 end
