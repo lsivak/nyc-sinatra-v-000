@@ -4,7 +4,7 @@
   <input type="hidden" name="_method" value="patch">
 
   <label>Figure Name:</label>
-  <input type="text" name="figure[name]" id="figure_name" value="<%= @figure.name%>"></input>
+  <input type="text" name="figure[name]" id="figure_name" value="<%= @figure.name %>"></input>
   <br>
   <label>Choose Figure Title:</label>
   <% Title.all.each do |title| %>
@@ -22,7 +22,7 @@
   <% end %>
   <label>Create New Landmark:</label><br>
   <label>New Landmark Name:</label>
-  <input type="text" name="new_landmark[name]" id="new_landmark" ><br>
+  <input type="text" name="landmark[name]" id="new_landmark" ><br>
   <label>New Year_Completed:</label>
   <input type="text" name="landmark[year_completed]" id="year_completed" ><br>
   <br>
