@@ -1,48 +1,39 @@
-class FiguresController < ApplicationController
+<form action="/figures" method="POST">
+
+   <label>Figure Name:</label>
+   <input type="text" id="figure_name" name="figure[name]"></input>
+   <br>
+   <label>Choose Figure Title:</label>
+   <% Title.all.each do |title| %>
+
+   <input type="checkbox" id="title_<%=title.id%>" name="figure[title_ids][]" value="<%= title.id%>"></input>
+
+   <input type="checkbox" id=title_"<%=title.id%>" name="figure[title_ids][]" value="<%= title.id%>"></input><br>
+
+ <%end%>
+ <br>
+   <label>Create New Title:</label>
+   <input type="text" id="new_title" name="title[name]"></input></br>
 
 
-  get '/figures' do
-      @figures = Figure.all
-      erb :'figures/index'
-    end
+   <label>Choose Landmark:</label>
+   <% Landmark.all.each do |landmark| %>
 
-    get '/figures/new' do
-      erb :'figures/new'
-    end
+   <input type="checkbox" name="figure[landmark_ids][]" id="landmark_<%=landmark.id%>" value="<%=landmark.id%>">
+<% end %>
+<br>
+   <label>Create New Landmark:</label>
 
-  get '/figures/:id' do
-    @figure = Figure.find(params[:id])
-    erb :'figures/show'
-  end
+   <input type="checkbox" name="figure[landmark_ids][]" id="landmark_<%=landmark.id%>" value="<%=landmark.id%>"><br>
+   <label>Year Completed:</label>
+   <%= landmark.year_completed %><br>
+<% end %>
+   <label>Create New Landmark:</label><br>
 
+     <input type="text" name="landmark[name]" id="new_landmark" ><br>
+     <label>New Year_Completed:</label>
+       <input type="text" name="landmark[year_completed]" ><br>
+       <br>
+     <input type="submit" value="Create New Figure">
 
-  get '/figures/:id/edit' do
-    @figure = Figure.find(params[:id])
-    erb :'figures/edit'
-  end
-
-    post '/figures' do
-       @figure = Figure.create(params["figure"])
-       if !params[:landmark][:name].empty?
-         @figure.landmarks << Landmark.create(params[:landmark])
-       end
-
-       if !params[:title][:name].empty?
-         @figure.titles << Title.create(params[:title])
-       end
-
-       @figure.save
-       redirect to "/figures/#{@figure.id}"
-     end
-
-  post '/figures/:id' do
-    @figure = Figure.find(params[:id])
-    @figure.update(params["figure"])
-    @figure.landmarks << Landmark.create(params[:landmark])
-    @figure.titles << Title.create(params[:title])
-
-    @figure.save
-    redirect to "figures/#{@figure.id}"
-
-  end
-end
+   </form>
